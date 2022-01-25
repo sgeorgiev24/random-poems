@@ -12,11 +12,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.github.sgeorgiev.randompoems.data.model.PoemDataModel
+import com.github.sgeorgiev.randompoems.ui.model.PoemUIModel
 import kotlinx.coroutines.launch
 
 @Composable
 fun HomeScreen(
-    state: DataState<List<PoemDataModel>>,
+    state: DataState<List<PoemUIModel>>,
     scaffoldState: ScaffoldState
 ) {
     Scaffold(
@@ -26,7 +27,7 @@ fun HomeScreen(
             is DataState.Error -> {
                 OnError(scaffoldState, state)
             }
-            is DataState.Success<List<PoemDataModel>> -> {
+            is DataState.Success<List<PoemUIModel>> -> {
                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                     items(state.data) { poem ->
                         Text(text = poem.title)
@@ -45,7 +46,7 @@ fun HomeScreen(
 @Composable
 private fun OnError(
     scaffoldState: ScaffoldState,
-    state: DataState.Error<List<PoemDataModel>>
+    state: DataState.Error<List<PoemUIModel>>
 ) {
     val coroutineScope = rememberCoroutineScope()
     LaunchedEffect(true) {

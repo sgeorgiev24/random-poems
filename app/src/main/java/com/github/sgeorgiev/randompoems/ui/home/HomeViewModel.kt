@@ -5,8 +5,8 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.sgeorgiev.randompoems.data.model.PoemDataModel
 import com.github.sgeorgiev.randompoems.data.repository.PoemRepository
+import com.github.sgeorgiev.randompoems.ui.model.PoemUIModel
 import com.github.sgeorgiev.randompoems.util.loading
 import com.github.sgeorgiev.randompoems.util.onError
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -19,9 +19,9 @@ class HomeViewModel @Inject constructor(
     private val poemRepository: PoemRepository
 ) : ViewModel() {
 
-    private val _state: MutableState<DataState<List<PoemDataModel>>> =
+    private val _state: MutableState<DataState<List<PoemUIModel>>> =
         mutableStateOf(DataState.Idle())
-    val state: State<DataState<List<PoemDataModel>>> = _state
+    val state: State<DataState<List<PoemUIModel>>> = _state
 
     init {
         poemRepository.getRandomPoems()
