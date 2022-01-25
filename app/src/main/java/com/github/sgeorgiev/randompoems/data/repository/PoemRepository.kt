@@ -1,7 +1,8 @@
 package com.github.sgeorgiev.randompoems.data.repository
 
 import com.github.sgeorgiev.randompoems.data.model.PoemDataModel
+import kotlinx.coroutines.flow.Flow
 
 interface PoemRepository {
-    suspend fun getRandomPoems(): List<PoemDataModel>
+    fun getRandomPoems(): Flow<List<PoemDataModel>>
 }

@@ -3,18 +3,20 @@ package com.github.sgeorgiev.randompoems
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.github.sgeorgiev.randompoems.ui.Screen
+import com.github.sgeorgiev.randompoems.ui.home.DataState
 import com.github.sgeorgiev.randompoems.ui.home.HomeScreen
+import com.github.sgeorgiev.randompoems.ui.home.HomeViewModel
 import com.github.sgeorgiev.randompoems.ui.theme.RandomPoemsTheme
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -31,7 +33,13 @@ class MainActivity : ComponentActivity() {
                     composable(
                         route = Screen.Home.route
                     ) {
-                        HomeScreen()
+                        val scaffoldState = rememberScaffoldState()
+                        val viewModel: HomeViewModel = hiltViewModel()
+
+                        HomeScreen(
+                            state = viewModel.state.value,
+                            scaffoldState = scaffoldState
+                        )
                     }
                 }
             }
