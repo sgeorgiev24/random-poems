@@ -4,7 +4,6 @@ import androidx.compose.runtime.MutableState
 import com.github.sgeorgiev.randompoems.ui.home.DataState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 
 inline fun <T> Flow<T>.onError(crossinline block: (Throwable) -> Unit): Flow<T> =

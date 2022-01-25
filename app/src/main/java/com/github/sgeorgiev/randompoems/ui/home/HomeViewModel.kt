@@ -11,9 +11,7 @@ import com.github.sgeorgiev.randompoems.util.loading
 import com.github.sgeorgiev.randompoems.util.onError
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,7 +19,8 @@ class HomeViewModel @Inject constructor(
     private val poemRepository: PoemRepository
 ) : ViewModel() {
 
-    private val _state: MutableState<DataState<List<PoemDataModel>>> = mutableStateOf(DataState.Idle())
+    private val _state: MutableState<DataState<List<PoemDataModel>>> =
+        mutableStateOf(DataState.Idle())
     val state: State<DataState<List<PoemDataModel>>> = _state
 
     init {
